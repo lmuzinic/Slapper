@@ -1,0 +1,17 @@
+{
+    "name": "lmuzinic/slapper",
+    "description": "Wrapper around Slack Incoming WebHooks",
+    "license": "The MIT License (MIT)",
+    "authors": [
+        {
+            "name": "Luka Muzinic",
+            "email": "luka@muzinic.net"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload" : {
+        "psr-0" : {"Slapper" : "src/"}
+    }
+}
