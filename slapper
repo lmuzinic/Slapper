@@ -1,0 +1,6 @@
+#!/usr/bin/php
+<?php
+
+$loader = require 'vendor/autoload.php';
+
+echo "Slap!" . PHP_EOL;
