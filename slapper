@@ -3,4 +3,18 @@
 
 $loader = require 'vendor/autoload.php';
 
+$config = parse_ini_file('slapper.conf')
+;
+$payload = new \Slapper\Payload('Testing something...');
+$payload->channel = "#test";
+
+$request = new \Slapper\Request($payload, $config);
+$response = $request->send();
+
+if ($response->isSuccessful()) {
+    echo "Slap!";
+} else {
+    echo $response->getMessage();
+}
+
 echo "Slap!" . PHP_EOL;
