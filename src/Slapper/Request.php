@@ -8,6 +8,7 @@ class Request
     protected $token = '';
     protected $teamUrl = '';
 
+    protected $payload;
     protected $curlHandler;
 
     public function __construct(Payload $payload, array $config)
@@ -16,12 +17,13 @@ class Request
         $this->teamUrl = $config['teamUrl'];
 
         $payload->prepare();
+        $this->payload = json_encode($payload);
 
         $this->curlHandler = curl_init();
         curl_setopt($this->curlHandler, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($this->curlHandler, CURLOPT_URL, $this->getUrl());
         curl_setopt($this->curlHandler, CURLOPT_POST, 1);
-        curl_setopt($this->curlHandler, CURLOPT_POSTFIELDS, 'payload=' . json_encode($payload));
+        curl_setopt($this->curlHandler, CURLOPT_POSTFIELDS, 'payload=' . $this->payload);
     }
 
     public function __destruct()
@@ -39,5 +41,10 @@ class Request
     public function getUrl()
     {
         return 'https://' . $this->teamUrl . '.slack.com/services/hooks/incoming-webhook?token=' . $this->token;
+    }
+
+    public function getPayload()
+    {
+        return $this->payload;
     }
 } 
