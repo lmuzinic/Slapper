@@ -5,6 +5,8 @@ namespace Slapper;
 
 class Payload
 {
+    use Helper;
+
     public $channel;
     public $username;
     public $text;
@@ -15,11 +17,6 @@ class Payload
         $this->text = $text;
     }
 
-    public function prepare()
     {
-        foreach($this as &$property)
-        {
-            $property = rawurlencode($property);
-        }
     }
 }
