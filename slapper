@@ -3,18 +3,10 @@
 
 $loader = require 'vendor/autoload.php';
 
-$config = parse_ini_file('slapper.conf')
-;
-$payload = new \Slapper\Payload('Testing something...');
-$payload->channel = "#test";
+$config = parse_ini_file('slapper.conf');
 
-$request = new \Slapper\Request($payload, $config);
-$response = $request->send();
+use Symfony\Component\Console\Application;
 
-if ($response->isSuccessful()) {
-    echo "Slap!";
-} else {
-    echo $response->getMessage();
-}
-
-echo "Slap!" . PHP_EOL;
+$application = new Application();
+$application->add(new \Slapper\Console\Command\Send());
+$application->run();
