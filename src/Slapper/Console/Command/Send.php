@@ -4,6 +4,7 @@ namespace Slapper\Console\Command;
 
 use Slapper\Payload;
 use Slapper\Request;
+use Slapper\Configuration;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -65,7 +66,7 @@ class Send extends Command
             $payload->icon_emoji = $emoji;
         }
 
-        $request = new Request($payload, parse_ini_file('slapper.conf'));
+        $request = new Request($payload, new Configuration('slapper.conf'));
         $request->send();
     }
 } 

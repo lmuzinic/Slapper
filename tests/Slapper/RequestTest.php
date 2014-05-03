@@ -8,13 +8,11 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->payload = new Slapper\Payload("Text that we send");
-        $this->request = new \Slapper\Request($this->payload, parse_ini_file(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'slapper.conf'));
+        $this->request = new \Slapper\Request($this->payload, new \Slapper\Configuration(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'slapper.conf'));
     }
 
     public function testProperties()
     {
-        $this->assertObjectHasAttribute('token', $this->request);
-        $this->assertObjectHasAttribute('teamUrl', $this->request);
         $this->assertObjectHasAttribute('curlHandler', $this->request);
     }
 
