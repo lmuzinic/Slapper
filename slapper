@@ -9,4 +9,5 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new \Slapper\Console\Command\Send());
+$application->add(new \Slapper\Console\Command\Configure());
 $application->run();
